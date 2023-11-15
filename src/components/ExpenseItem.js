@@ -1,20 +1,15 @@
 import './ExpenseItem.css'
 
-function ExpenseItem() {
-    const expnseDate  = new Date(2021, 2, 28);
-    const expenseTitle = 'Car Insurance';
-    const localtioOfExpenditure  = 'asr Car Services'
-    const expenseAmount = 259.33;
-
+function ExpenseItem(props) {
 
   return (
-    <div className="expnse-item">
-      <h2>Expense item!</h2>
-      <ul>
-        <li className="item">{expnseDate.toISOString} {expenseTitle} {localtioOfExpenditure} {expenseAmount} </li>
-        <li className="item">Petrol Rs 100</li>
-        <li className="item">Movies Rs 200</li> 
-      </ul>
+    <div className="expense-item">
+      <div>{props.date.toISOString}</div>
+      <div className='expense-item__description'>
+        <h2>{props.title}</h2>
+        <h2>{props.location}</h2>
+        <div className='expense-item__price'>{props.amount}</div>
+      </div>
     </div>
   );
 }
