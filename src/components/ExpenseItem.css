@@ -1,0 +1,8 @@
+.expnse-item{
+    color: pink;
+}
+.item{
+    list-style: none;
+    display: flex;
+    align-items: flex-start;
+}
