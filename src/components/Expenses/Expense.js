@@ -1,6 +1,6 @@
 import ExpenseItem from "./ExpenseItem";
 
-function Expense(){
+const Expense = () => {
     const expenses = [
         {
           title: "Car Insurance",
