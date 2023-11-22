@@ -1,6 +1,7 @@
 import "./App.css";
+import NewExpense from "./components/NewExpense/NewExpense";
 import ExpenseItem from "./components/Expenses/ExpenseItem";
-import Cart from './components/UI/Card'
+import Card from './components/UI/Card'
 
 const App = () => {
   const expenses = [
@@ -43,13 +44,19 @@ const App = () => {
       />
     );
   }
+
+  const Change = () => {
+    console.log('props')
+  }
+
   return (
-    <Cart className="App">
+    <Card className="App">
       <div className="Cart">
         <h1>Expense Tracking!</h1>
+        <NewExpense onChange={Change} ></NewExpense>
         {expenseItems}
       </div>
-    </Cart>
+    </Card>
   );
 }
 
