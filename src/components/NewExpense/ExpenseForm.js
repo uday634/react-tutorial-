@@ -1,12 +1,13 @@
 import React, {useState} from "react";
 import "./ExpenseForm.css";
 
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
 
   const [enteredTitle, setEnteredTitle] = useState('');
   const [enteredAmount, setEnteredAmount] = useState('');
+  const [enteredLocation, setEnteredLocation] = useState('');
   const [enteredDate, setEnteredDate] = useState('');
-
+  
   // const [userInput, setUserInput] = useState({
   //   enteredTitle:'',
   //   enteredAmount:'',
@@ -30,6 +31,12 @@ const ExpenseForm = () => {
     //   ...userInput, enteredAmount: event.target.value,
     // });
   };
+  const locationChangeHandler = (event) => {
+    setEnteredLocation(event.target.value);
+    // setUserInput({
+    //   ...userInput, enteredAmount: event.target.value,
+    // });
+  };
   const dateChangeHandler = (event) => {
     setEnteredDate(event.target.value);
     // setUserInput({
@@ -40,25 +47,34 @@ const ExpenseForm = () => {
     event.preventDefault();
     let expenseData = {
       title: enteredTitle,
+      location:enteredLocation,
       amount:enteredAmount,
       date:new Date(enteredDate)
     };
-    console.log(expenseData)
+
+    props.onSaveExpenseData(expenseData);
+    setEnteredTitle('')
+    setEnteredAmount('')
+    setEnteredLocation('')
+    setEnteredDate('')
   }
-
-
 
   return (
     <form onSubmit={SubmitHandler}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label>Expense title</label>
-          <input type="text" className="Expense" onChange={titleChangeHandler} />
+          <input type="text" value={enteredTitle} className="Expense" onChange={titleChangeHandler} />
         </div>
 
         <div className="new-expense__control">
           <label>Expense Amount</label>
-          <input type="number" onChange={amountChangeHandler} />
+          <input type="number" value={enteredAmount} onChange={amountChangeHandler} />
+        </div>
+
+        <div className="new-expense__control">
+          <label>Expense Location</label>
+          <input type="text" value={enteredLocation} onChange={locationChangeHandler} />
         </div>
 
         <div className="new-expense__control">
@@ -67,6 +83,7 @@ const ExpenseForm = () => {
             type="date"
             min="2019-01-10"
             max="2024-01-10"
+            value={enteredDate}
             onChange={dateChangeHandler}
           />
         </div>

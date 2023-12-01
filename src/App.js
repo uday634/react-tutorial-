@@ -1,6 +1,7 @@
 import "./App.css";
 import NewExpense from "./components/NewExpense/NewExpense";
-import ExpenseItem from "./components/Expenses/ExpenseItem";
+// import ExpenseItem from "./components/Expenses/ExpenseItem";
+import Expenses from "./components/Expenses/Expense";
 import Card from './components/UI/Card'
 
 const App = () => {
@@ -31,30 +32,36 @@ const App = () => {
     },
   ];
 
-  const expenseItems = [];
+  // const expenseItems = [];
 
-  for (let i = 0; i < expenses.length; i++) {
-    expenseItems.push(
-      <ExpenseItem
-        key={i}
-        title={expenses[i].title}
-        amount={expenses[i].amount}
-        location={expenses[i].location}
-        date={expenses[i].date}
-      />
-    );
-  }
+  // for (let i = 0; i < expenses.length; i++) {
+  //   expenseItems.push(
+  //     <ExpenseItem
+  //       key={i}
+  //       title={expenses[i].title}
+  //       amount={expenses[i].amount}
+  //       location={expenses[i].location}
+  //       date={expenses[i].date}
+  //     />
+  //   );
+  // }
 
   const Change = () => {
     console.log('props')
+  }
+
+  const addExpenseHandler = expense => {
+    console.log('In App.js')
+    expenses.push(expense)
+    console.log(expenses)
   }
 
   return (
     <Card className="App">
       <div className="Cart">
         <h1>Expense Tracking!</h1>
-        <NewExpense onChange={Change} ></NewExpense>
-        {expenseItems}
+        <NewExpense onChange={Change} onAddExpense={addExpenseHandler}></NewExpense>
+        <Expenses expenses = {expenses}></Expenses>
       </div>
     </Card>
   );
