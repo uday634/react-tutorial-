@@ -1,30 +1,25 @@
-import React, { useState } from 'react';
-import ExpenseItem from './ExpenseItem';
-import ExpensesFilter from '../ExpensesFilter/ExpensesFilter';
-import Card from '../UI/Card';
+// Expenses.js
+import React from "react";
+import ExpenseItem from "./ExpenseItem";
+import ExpensesFilter from "../ExpensesFilter/ExpensesFilter";
+import Card from "../UI/Card";
+import "./Expense.css";
 
 const Expenses = (props) => {
-  const [filteredArray, setFilteredArray] = useState(props.expenses);
+  const yearFilterHandler = (year) => {
+    props.filteredYear(year);
+  };
 
-  function yearFilterHandler(year) {
-    let filteredExpenses
-    if(year != 'none'){
-      filteredExpenses = props.expenses.filter((expense) => {
-        return expense.date.getFullYear() === +year;
-      });
-    }else{
-      filteredExpenses = props.expenses
-    }
-
-    setFilteredArray(filteredExpenses);
-  }
+  const filteredExpenses = props.expenses.filter((expense) => {
+    return expense.date.getFullYear().toString() === props.filterYearInput;
+  });
 
   return (
     <div>
       <Card>
         <ExpensesFilter yearFilter={yearFilterHandler} />
-        {filteredArray && filteredArray.length > 0 ? (
-          filteredArray.map((expense) => (
+        {filteredExpenses.length > 1 &&
+          filteredExpenses.map((expense) => (
             <ExpenseItem
               key={expense.id}
               title={expense.title}
@@ -32,8 +27,20 @@ const Expenses = (props) => {
               location={expense.location}
               date={expense.date}
             />
-          ))
-        ) : (
+          ))}
+        {filteredExpenses.length === 1 && (
+          <>
+            <ExpenseItem
+              key={filteredExpenses[0].id}
+              title={filteredExpenses[0].title}
+              amount={filteredExpenses[0].amount}
+              location={filteredExpenses[0].location}
+              date={filteredExpenses[0].date}
+            />
+            <p>Only single Expense here. Please add more...</p>
+          </>
+        )}
+        {filteredExpenses.length === 0 && (
           <p>No expenses found for the selected year.</p>
         )}
       </Card>

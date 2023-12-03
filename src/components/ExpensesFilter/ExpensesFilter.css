@@ -1,0 +1,19 @@
+.filter-container{
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(49, 49, 49);
+    color: white;
+    padding: 1rem;
+    border-radius: 15px;
+}
+
+.filter-text{
+    font-weight: 500;
+}
+
+.filter-select{
+    padding: 0 2rem;
+    border-radius: 15px;
+    font-size: medium;
+    font-weight: bold;
+}
