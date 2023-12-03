@@ -1,22 +1,35 @@
 import ExpenseItem from "./ExpenseItem";
+import Card from "../UI/Card";
 
 const Expenses = (props) => {
+  // const expenseItems = [];
 
-    
-      const expenseItems = [];
-    
-      for (let i = 0; i < props.expenses.length; i++) {
-        expenseItems.push(
+  // for (let i = 0; i < props.expenses.length; i++) {
+  //   expenseItems.push(
+  //     <ExpenseItem
+  //       key={i}
+  //       title={props.expenses[i].title}
+  //       amount={props.expenses[i].amount}
+  //       location={props.expenses[i].location}
+  //       date={props.expenses[i].date}
+  //     />
+  //   );
+  // }
+  return (
+    <div>
+      <Card>
+        {props.expenses.map((expense) => (
           <ExpenseItem
-            key={i}
-            title={props.expenses[i].title}
-            amount={props.expenses[i].amount}
-            location={props.expenses[i].location}
-            date={props.expenses[i].date}
+            key = {expense.id}
+            title={expense.title}
+            amount={expense.amount}
+            location={expense.location}
+            date={expense.date}
           />
-        );
-      }
-      return expenseItems;
+        ))}
+      </Card>
+    </div>
+  );
 };
 
 export default Expenses;
