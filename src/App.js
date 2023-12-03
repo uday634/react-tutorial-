@@ -32,7 +32,7 @@ const DUMMY_EXPENSES = [
     title: "Dinner Out",
     location: "Restaurant XYZ",
     amount: 80.0,
-    date: new Date(2021, 4, 20),
+    date: new Date(2022, 4, 20),
   },
 ];
 
@@ -53,6 +53,7 @@ const App = () => {
   return (
     <Card className="App">
       <div className="Cart">
+        <p>Select the year of</p>
         <h1>Expense Tracking!</h1>
         <NewExpense onChange={Change} onAddExpense={addExpenseHandler}></NewExpense>
         <Expenses expenses = {expenses}></Expenses>
