@@ -15,6 +15,7 @@ const ExpesnesFilter = (props) => {
             <p className="filter-text">Select the year to be filtered</p>
             <select  className="filter-select" onChange = {yearHandler} value={selectedYear}>
                
+                <option></option>
                 <option>2020</option>
                 <option>2021</option>
                 <option>2022</option>
